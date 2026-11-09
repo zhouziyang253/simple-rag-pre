@@ -1,1 +1,9 @@
-这是我第一次尝试手写RAG，感觉非常的困难。-11.8
+- 这是我第一次尝试手写RAG，感觉非常的困难。-11.8
+- 这两天完成了embedding vectordb retrival 的demo，然后今天看到陈家航学长的朋友圈感触颇深。感觉AI的出现确实减少了很多的代码创作的快乐。好在这个项目只是个人的练手，AI只是起到一个检索和查询的功能，所以写起来倒还是挺轻松的。主要是感觉自己又掌握了更多的知识。-11.9
+    -具体来说今天主要是学习了这些内容：
+     - with open() as:
+     - pickle
+     - similarity -> util.cos_sim()分析接近程度，embedding记得normalize_embedding=True
+     - topk 返回（x，index） 最大的k个
+     - if __name__ == "__main__": 以及断点测试
+- 之后继续完成这个demo，然后有条件可以修改一下func_answer_info,返回的字典里面加上query chunks,不加也没事，之后也prompt时候注意一下
