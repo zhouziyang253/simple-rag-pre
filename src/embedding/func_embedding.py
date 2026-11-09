@@ -5,5 +5,5 @@ import numpy as np
 def func_embedding(chunks)->np.ndarray:
     model = SentenceTransformer('BAAI/bge-m3',revision='main',local_files_only=True) #使用main分支，下载之后直接指定使用本地模型
     #向量化
-    embeddings = model.encode(chunks,batch_size=5,show_progress_bar=True)
+    embeddings = model.encode(chunks,batch_size=5,show_progress_bar=True,normalize_embeddings=True)
     return embeddings
