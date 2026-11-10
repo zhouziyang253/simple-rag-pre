@@ -3,7 +3,7 @@ from sentence_transformers import util
 import pickle
 import torch
 
-def answer_info(query_vector:list,info_db:list[dict])->list[list[dict]]:
+def answer_info(query_vector:list,info_db:list[dict],top_k = 5)->list[list[dict]]:
     '''输入一个问题的embedding向量以及资料库info_db,
     输出一个新的answer_db,为list[list[dict]]类型,
     其中第一层表示针对不同的query chunks,第二层针对每一个问题返回的chunks块的信息,
@@ -13,14 +13,14 @@ def answer_info(query_vector:list,info_db:list[dict])->list[list[dict]]:
         vector_db.append(info["vector"])
     
     answer_matrix = util.cos_sim(query_vector,vector_db)
-    print(answer_matrix)
+    # print(answer_matrix)
     answer_info = []
 
     #可以使用torch的处理方式来获得前几大的数值 topk返回（数值，索引）
     for i in range(len(query_vector)):
         answer_text_i =[] #第i个query的文本回答
         # 这里的index_i是一个二维数组，其中第一个量是1，表示一维（在iquery上的）；然后把第二个量的唯独就是答案对应的索引
-        _ , index_i = torch.topk(answer_matrix[i,:],k=2) #针对地i个query块的最佳匹配的索引
+        _ , index_i = torch.topk(answer_matrix[i,:],k=top_k) #针对地i个query块的最佳匹配的索引
     
         for j in index_i:
             answer_text_i.append(info_db[j])
