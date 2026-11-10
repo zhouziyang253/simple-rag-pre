@@ -43,3 +43,4 @@ u = response.usage
 print(f"input tokens:{u.prompt_tokens}")
 print(f"complete tokens:{u.completion_tokens}")
 print(f"total tokens:{u.total_tokens}")
+print(type(response))
