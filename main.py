@@ -14,9 +14,9 @@ def main(info_db,vector_db,client = OpenAI(
                 query = input ("Please input the question:\n")        
                 response = func_getanswer(query=query,client=client,embedding_model=embeddingmodel,info_db=info_db,vector_db=vector_db)
                 print(response.choices[0].message.content)
-                print(response.usage.completion_tokens)
-                print(response.usage.prompt_tokens)
-                print(response.usage.total_tokens)
+                print(f"output tokens:{response.usage.completion_tokens}")
+                print(f"input Tokens:{response.usage.prompt_tokens}")
+                print(f"Toltal Tokens:{response.usage.total_tokens}")
                 state = input("Do you want to ask question more? 'y'/'n':")
 
 if __name__ == "__main__":

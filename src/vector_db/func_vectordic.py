@@ -6,7 +6,7 @@ def func_vectordic(locations:list[str],embeddingmodel)->list[dict]:
     info = []
     for location in locations:
         rows = get_row(location)
-        chunks = max_num_chunks(MAX_NUM=50,rows=rows)
+        chunks = max_num_chunks(MAX_NUM=75,rows=rows)
         embeddings = func_embedding(chunks=chunks,embeddingmodel=embeddingmodel)
         # single_info = {”id“:id(embedding),"vector":embedding,"原文":chunk,"出处":location}
         for i in range(len(chunks)):

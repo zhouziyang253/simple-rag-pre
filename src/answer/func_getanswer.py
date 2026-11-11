@@ -4,7 +4,7 @@ import pickle
 from src.retrival.func_answer_info import answer_info
 from sentence_transformers import SentenceTransformer
 def func_getanswer(query,client,embedding_model,info_db, #info_db 指的是一个已经解码之后的文件
-                   vector_db,model_name="qwen3.5-16k:latest"):
+                   vector_db,model_name="qwen3.5:9b"):
     '''输入一个问题，在指定数据库和指定模型后，输出一个回答(一个很大的东西openai.types.chat.chat_completion.ChatCompletion)'''
 
     query_chunk = [query]

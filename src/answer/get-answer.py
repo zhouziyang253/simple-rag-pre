@@ -7,7 +7,7 @@ client = OpenAI(
     base_url= "http://localhost:11434/v1",
     api_key= "ollama"
 )
-model_name = "qwen3.5-16k:latest"
+model_name = "qwen3.5:9b"
 
 query_input = input("Please input the question:\n")
 query_chunk = [query_input]
