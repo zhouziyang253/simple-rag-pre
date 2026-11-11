@@ -4,15 +4,12 @@ import pickle
 import torch
 from sentence_transformers import SentenceTransformer
 
-def answer_info(query_vector:list,info_db:list[dict],top_k = 5)->list[list[dict]]:
+def answer_info(query_vector:list,info_db:list[dict],vector_db:list,top_k = 5)->list[list[dict]]:
     '''输入一个问题的embedding向量以及资料库info_db,
     输出一个新的answer_db,为list[list[dict]]类型,
     其中第一层表示针对不同的query chunks,第二层针对每一个问题返回的chunks块的信息,
     每个块以dict形式保存["id":...,"vector":...,"text":...,"location":...]'''
-    vector_db = []
-    for info in info_db:
-        vector_db.append(info["vector"])
-    
+
     answer_matrix = util.cos_sim(query_vector,vector_db)
     # print(answer_matrix)
     answer_info = []
