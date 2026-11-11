@@ -2,6 +2,7 @@ from src.embedding.func_embedding import func_embedding
 from sentence_transformers import util
 import pickle
 import torch
+from sentence_transformers import SentenceTransformer
 
 def answer_info(query_vector:list,info_db:list[dict],top_k = 5)->list[list[dict]]:
     '''输入一个问题的embedding向量以及资料库info_db,
@@ -29,8 +30,9 @@ def answer_info(query_vector:list,info_db:list[dict],top_k = 5)->list[list[dict]
 
 if __name__ == "__main__":
     # query = "今天你心情怎么样？"
+    embeddingmodel = SentenceTransformer('BAAI/bge-m3',revision='main',local_files_only=True)
     query_chunk = ["今天你心情怎么样？","怎么用英文打招呼"]
-    query_vector = func_embedding(query_chunk)
+    query_vector = func_embedding(query_chunk,embeddingmodel=embeddingmodel)
     # print(query)
     #使用pickle转码文件到一个 列表【字典】，内部的最小结构是{id:...,vector:...,text:...,location:...}
     with open("vector_db.pkl","rb") as f:
