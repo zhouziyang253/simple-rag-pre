@@ -6,6 +6,8 @@ from src.vector_db.func_get_locations import func_get_locations
 
 def func_write_in(locations:list[str],embeddingmodel) ->None :
     """执行写入操作"""
+    if not locations:
+        raise FileNotFoundError("There is no file in this location, so I can't make the vector_db.")
     info_dict = func_vectordic(locations=locations,embeddingmodel=embeddingmodel)
     Path("data_vector").mkdir(parents=True,exist_ok=True) #便于创建多级文件；不必在文件是否存在
     with open("data_vector/vector_db_test.pkl","wb") as f:
